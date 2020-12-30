@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../DepGraph.dart';
 import '../Response.dart';
 import 'MenuProvider.dart';
 
@@ -8,7 +9,7 @@ class BaseMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => MenuUseCases(),
+        create: (context) => MenuUseCases(DepGraph.useCases.fetchMenu),
         child: Center(
           child: Consumer<MenuUseCases>(
             builder: (context, model, child) => Column(

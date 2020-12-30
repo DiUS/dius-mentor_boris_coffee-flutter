@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 
 import '../Response.dart';
+import '../domain/MenuManager.dart';
 
 class MenuUseCases extends ChangeNotifier {
-  MenuUseCases() {
+  final FetchMenu _fetchMenu;
+
+  MenuUseCases(this._fetchMenu) {
     fetchList();
   }
 
@@ -12,7 +15,7 @@ class MenuUseCases extends ChangeNotifier {
   get list => _list;
 
   void fetchList() async {
-    _list = Success(List.of(["tea", "choc"]));
+    _list = await _fetchMenu().get();
     notifyListeners();
   }
 }
