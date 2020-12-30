@@ -20,7 +20,7 @@ enum FailureCategory {
 
 abstract class Response<A> {
   Response<B> map<B>(B func(A)) {
-    switch (this.runtimeType) {
+    switch (runtimeType) {
       case Error: return Error((this as Error).message);
       case Failure: return Failure((this as Failure).message, (this as Failure).status);
       case Success: try {
@@ -39,7 +39,7 @@ abstract class Response<A> {
 
 extension Nested<T> on Response<Response<T>> {
   Response<T> flatten() {
-    switch (this.runtimeType) {
+    switch (runtimeType) {
       case Error: return Error((this as Error).message);
       case Failure: return Failure((this as Failure).message, (this as Failure).status);
       case Success:
